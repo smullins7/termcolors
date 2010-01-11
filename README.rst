@@ -1,9 +1,9 @@
-*terminal-colors* Uses ANSI escape sequences to colorize output to a terminal.
+*terminal-colors* uses ANSI escape sequences to colorize output to a terminal.
 Most terminals recognize all escape sequences this library uses.
 
-====
+=================
 foreground colors
-====
+=================
  * Black 
  * Dark Gray
  * Blue   
@@ -21,9 +21,9 @@ foreground colors
  * Light Gray   
  * White
 
-====
+=================
 background colors
-====
+=================
  * Black  
  * Red   
  * Green
@@ -33,9 +33,9 @@ background colors
  * Cyan  
  * Light Gray
 
-====
+=======
 effects
-====
+=======
  * Underscore
  * Blink    
  * Blink Fast
