@@ -32,5 +32,7 @@ def test():
     for color in bg_colors:
         wrapper.output('background %s test line' % color)
 
+    #todo: test effects
+
 if __name__=="__main__":
     test()
