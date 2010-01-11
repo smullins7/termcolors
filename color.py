@@ -1,36 +1,22 @@
 class Colors(object):
     def __init__(self):
-        self.ENDC = Color('0m')
-        self.Red = Color(';31m')
-        self.Green = Color(';32m')
-        self.Yellow = Color(';33m')
-        self.Blue = Color(';34m')
-        self.Purple = Color(';35m')
-        self.Cyan = Color(';36m')
-        self.Black = Color(';30m')#bold = DarkGray
-        self.Gray = Color(';37m')#bold = White
+        pass
 
     def disable(self):
         for x in self.__dict__.keys():
             self.x.disable()
 
+
+	
+START = '\033[' 
+END = '\033[0m'
+
 class Color(object):
-    base = '\033['
-    end = '\033[0m'
 
     def __init__(self, color):
         self.color = color
-        self.is_bolded = 0
         self.is_disabled = False
-        self.__format_color__()
-
-    def __format_color__(self):
-        self.color_str = '%s%s%s' % (Color.base, self.is_bolded, self.color)
-
-    def bold(self):
-        self.is_bolded = 1
-        self.__format_color__()
-        return self
+        self.color_str = START + color
        
     def disable(self):
         self.is_disabled = True
@@ -49,7 +35,62 @@ class Color(object):
         colored = line[start_index:end_index]
         end = line[end_index:]
 
-        return '%s%s%s%s%s' % (beginning, self.color_str, colored, Color.end, end)
+        return '%s%s%s%s%s' % (beginning, self.color_str, colored, END, end)
+
+    def __add__(self, other):
+        return self.__repr__() + other
 
     def __repr__(self):
-        return '' if is_disabled else self.color_str
+        return '' if self.is_disabled else self.color_str
+
+class EffectiveColor(Color):
+    """EffectiveColor supports the following effects:
+    bold
+    faint 
+    italic
+    underscore
+    blink
+    blinkfast
+    inverse
+    concealed
+    strikeout
+    """
+
+    bold = 1
+    faint = 2
+    italic = 3
+    underscore = 4
+    blink = 5
+    blinkfast = 6
+    inverse = 7
+    concealed = 8
+    strikeout = 9
+
+    def toggle(self, effect):
+        self.color_str = "%s%s%s" % (START, effect, self.color)
+
+class BG(object):
+    """Effects are not supported for background colors
+    """
+    Black = Color(';40m')
+    Red = Color(';41m')
+    Green = Color(';42m')
+    Brown = Color(';43m')
+    Blue = Color(';44m')
+    Purple = Color(';45m')
+    Cyan = Color(';46m')
+    Gray = Color(';47m')
+
+class FG(object):
+    """Foreground colors support effects, such as bolding and blinking,
+    see C{EffectiveColor} for a description of all effects available.
+    """
+    Black = EffectiveColor(';30m')#bold = DarkGray
+    Red = EffectiveColor(';31m')
+    Green = EffectiveColor(';32m')
+    Yellow = EffectiveColor(';33m')
+    Blue = EffectiveColor(';34m')
+    Purple = EffectiveColor(';35m')
+    Cyan = EffectiveColor(';36m')
+    Gray = EffectiveColor(';37m')#bold = White
+
