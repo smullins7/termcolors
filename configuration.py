@@ -5,6 +5,10 @@ class Config(object):
     def __init__(self, file=None):
         self.formatting = defaultdict(dict)
         self.default = ('', '')
+        self.disabled = False
+
+    def disable(self):
+        self.disabled = True
 
     def add_default(self, fg, effect=None, bg=None):
         background, foreground = create_color(fg, effect, bg)
@@ -19,6 +23,9 @@ class Config(object):
         self.formatting['startswith'][target] = (background, foreground)
 
     def format(self, target):
+        if self.disabled:
+            return target
+
         for key, value in self.formatting['contains'].iteritems():
             if target.count(key):
                 background, foreground = value

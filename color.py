@@ -1,13 +1,3 @@
-class Colors(object):
-    def __init__(self):
-        pass
-
-    def disable(self):
-        for x in self.__dict__.keys():
-            self.x.disable()
-
-
-	
 START = '\033[' 
 END = '\033[0m'
 
@@ -15,20 +5,15 @@ class Color(object):
 
     def __init__(self, color):
         self.color = color
-        self.is_disabled = False
         self.color_str = START + color
        
-    def disable(self):
-        self.is_disabled = True
-
     def colorize(self, line, start_index=0, end_index=None):
-        """If self.is_disabled then return line otherwise return colored line
+        """Return colored line from start_index to end_index
 
-        @param line
-        @param start_index defaults to 0
-        @param start_index defaults to len(line)
+        @param line: the string to colorize
+        @param start_index: defaults to 0
+        @param end_index: defaults to None
         """
-        if self.is_disabled: return line
         if not end_index: end_index = len(line)
 
         beginning = line[:start_index]
@@ -41,7 +26,7 @@ class Color(object):
         return self.__repr__() + other
 
     def __repr__(self):
-        return '' if self.is_disabled else self.color_str
+        return self.color_str
 
 class EffectiveColor(Color):
     """EffectiveColor supports the following effects:
@@ -67,6 +52,10 @@ class EffectiveColor(Color):
     strikeout = 9
 
     def toggle(self, effect):
+        """Only one effect may be used at a time for a given string.
+
+        @param effect: the int value of the effect to turn on
+        """
         self.color_str = "%s%s%s" % (START, effect, self.color)
 
 class BG(object):
