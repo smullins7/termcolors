@@ -56,7 +56,7 @@ class Config(object):
             bg = None
             effect = None
             for param_str in fields:
-                key, value = tuple(param_str.split('='))
+                key, value = param_str.split('=')
                 if key == 'fg':
                     fg = value
                 elif key == 'bg':
