@@ -34,5 +34,13 @@ def test():
 
     #todo: test effects
 
+def test_from_file():
+    config = Config('rc')
+    wrapper = Wrapper(config)
+    wrapper.output('red on white changeset line')
+    wrapper.output('foo cyan on blue test line')
+    wrapper.output('bar blue underlined test line')
+
 if __name__=="__main__":
     test()
+    test_from_file()

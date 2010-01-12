@@ -1,0 +1,3 @@
+contains changeset fg=red bg=gray
+startswith foo fg=cyan bg=blue
+startswith bar fg=blue effect=underscore
