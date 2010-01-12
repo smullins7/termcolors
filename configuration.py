@@ -46,6 +46,9 @@ class Config(object):
         for line in open(file_name):
             line = line.strip()
             fields = line.split(' ')
+            if len(fields) < 2:
+                continue
+
             type = fields.pop(0)
             if type != 'default':
                 target = fields.pop(0)

@@ -41,6 +41,17 @@ def test_from_file():
     wrapper.output('foo cyan on blue test line')
     wrapper.output('bar blue underlined test line')
 
+def test_bold():
+    config = Config()
+    for color in colors:
+        config.add_startswith(color, color, effect="bold")
+    wrapper = Wrapper(config)
+    for color in colors:
+        wrapper.output('%s bold test line' % color)
+
+
+    
 if __name__=="__main__":
     test()
     test_from_file()
+    test_bold()
