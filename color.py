@@ -25,7 +25,8 @@ class Color(object):
         colored = line[start_index:end_index]
         end = line[end_index:]
 
-        return '%s%s%s%s%s' % (beginning, self.color_str, colored, END, end)
+        return ''.join([beginning, self.color_str, colored, END, end])
+        #return '%s%s%s%s%s' % (beginning, self.color_str, colored, END, end)
 
     def __add__(self, other):
         return self.__repr__() + other

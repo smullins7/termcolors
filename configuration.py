@@ -40,7 +40,7 @@ class Config(object):
                 return background + foreground.colorize(target)
 
         background, foreground = self.default
-        return "%s%s" % (background, foreground.colorize(target))
+        return ''.join([background, foreground.colorize(target)])
 
     def add_from_file(self, file_name):
         for line in open(file_name):
