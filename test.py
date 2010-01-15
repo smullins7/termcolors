@@ -32,8 +32,6 @@ def test():
     for color in bg_colors:
         wrapper.output('background %s test line' % color)
 
-    #todo: test effects
-
 def test_from_file():
     config = Config('rc')
     wrapper = Wrapper(config)
@@ -41,17 +39,17 @@ def test_from_file():
     wrapper.output('foo cyan on blue test line')
     wrapper.output('bar blue underlined test line')
 
-def test_bold():
+def test_effects():
+    fx = ['bold', 'faint', 'italic', 'underscore', 'blink', 'blinkfast', 'inverse', 'concealed', 'strikeout']
     config = Config()
-    for color in colors:
-        config.add_startswith(color, color, effect="bold")
+    for effect in fx:
+        config.add_contains(effect, 'gray', effect, 'black')
+
     wrapper = Wrapper(config)
-    for color in colors:
-        wrapper.output('%s bold test line' % color)
-
-
+    for effect in fx:
+        wrapper.output("this line should have the %s effect" % effect)
     
 if __name__=="__main__":
     test()
     test_from_file()
-    test_bold()
+    test_effects()

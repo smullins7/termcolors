@@ -26,7 +26,6 @@ class Color(object):
         end = line[end_index:]
 
         return ''.join([beginning, self.color_str, colored, END, end])
-        #return '%s%s%s%s%s' % (beginning, self.color_str, colored, END, end)
 
     def __add__(self, other):
         return self.__repr__() + other
@@ -66,29 +65,62 @@ class EffectiveColor(Color):
         @param effect: the int value of the effect to turn on
         """
         self.color_str = "%s%s%s%s%s" % (START, effect, DEL, self.color_id, M)
+        self.effect = effect
 
 class BG(object):
     """Effects are not supported for background colors
     """
-    Black = Color(40)
-    Red = Color(41)
-    Green = Color(42)
-    Brown = Color(43)
-    Blue = Color(44)
-    Purple = Color(45)
-    Cyan = Color(46)
-    Gray = Color(47)
+    @classmethod
+    def Black(cls):
+        return Color(40)
+    @classmethod
+    def Red(cls):
+        return Color(41)
+    @classmethod
+    def Green(cls):
+        return Color(42)
+    @classmethod
+    def Brown(cls):
+        return Color(43)
+    @classmethod
+    def Blue(cls):
+        return Color(44)
+    @classmethod
+    def Purple(cls):
+        return Color(45)
+    @classmethod
+    def Cyan(cls): 
+        return Color(46)
+    @classmethod
+    def Gray(cls): 
+        return Color(47)
 
 class FG(object):
     """Foreground colors support effects, such as bolding and blinking,
     see C{EffectiveColor} for a description of all effects available.
     """
-    Black = EffectiveColor(30)#bold = DarkGray
-    Red = EffectiveColor(31)
-    Green = EffectiveColor(32)
-    Yellow = EffectiveColor(33)
-    Blue = EffectiveColor(34)
-    Purple = EffectiveColor(35)
-    Cyan = EffectiveColor(36)
-    Gray = EffectiveColor(37)#bold = White
+    @classmethod
+    def Black(cls):
+        return EffectiveColor(30)#bold = DarkGray
+    @classmethod
+    def Red(cls):
+        return EffectiveColor(31)
+    @classmethod
+    def Green(cls):
+        return EffectiveColor(32)
+    @classmethod
+    def Yellow(cls):
+        return EffectiveColor(33)
+    @classmethod
+    def Blue(cls):
+        return EffectiveColor(34)
+    @classmethod
+    def Purple(cls):
+        return EffectiveColor(35)
+    @classmethod
+    def Cyan(cls):
+        return EffectiveColor(36)
+    @classmethod
+    def Gray(cls):
+        return EffectiveColor(37)#bold = White
 

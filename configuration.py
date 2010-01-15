@@ -72,11 +72,11 @@ class Config(object):
 
 
 def create_color(fg=None, effect=None, bg=None):
-    foreground = Color()
+    foreground = EffectiveColor()
     if fg and type(fg) is str and hasattr(FG, fg.capitalize()):
-        foreground = getattr(FG, fg.capitalize())
+        foreground = getattr(FG, fg.capitalize())()
     elif type(fg) is int:
-        foreground = Color(fg)
+        foreground = EffectiveColor(fg)
     else:
         #throw an exception or use a default?
         pass
@@ -92,7 +92,7 @@ def create_color(fg=None, effect=None, bg=None):
 
     background = Color()
     if bg and type(bg) is str and hasattr(BG, bg.capitalize()):
-        background = getattr(BG, bg.capitalize())
+        background = getattr(BG, bg.capitalize())()
     elif type(bg) is int:
         background = Color(bg)
     else:
