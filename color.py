@@ -59,12 +59,17 @@ class EffectiveColor(Color):
     concealed = 8
     strikeout = 9
 
+    def __init__(self, color_id='', effect=None):
+        super(EffectiveColor, self).__init__(color_id=color_id)
+        if effect:
+            self.toggle(effect)
+
     def toggle(self, effect):
         """Only one effect may be used at a time for a given string.
 
         @param effect: the int value of the effect to turn on
         """
-        self.color_str = "%s%s%s%s%s" % (START, effect, DEL, self.color_id, M)
+        self.color_str = ''.join([START, effect, DEL, self.color_id, M])
         self.effect = effect
 
 class BG(object):
@@ -124,3 +129,12 @@ class FG(object):
     def Gray(cls):
         return EffectiveColor(37)#bold = White
 
+foreground_colors = {
+    'cyan': EffectiveColor(36),
+    'darkgray': EffectiveColor(30, EffectiveColor.bold),
+    'darkred': EffectiveColor(31, EffectiveColor.bold),
+    'gray': EffectiveColor(37),#bold = White
+    'green': EffectiveColor(32),
+    'red': EffectiveColor(31),
+    'yellow': EffectiveColor(33),
+}
