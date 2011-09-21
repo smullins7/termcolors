@@ -20,7 +20,7 @@ def read_config(filename=None):
     except Exception, e:
         print "Error opening config file %s" % filename
         print traceback.print_exc(e)
-        
+
 def handle_input(fp):
     try:
         while not fp.closed:
