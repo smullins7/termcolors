@@ -1,3 +1,5 @@
-contains changeset fg=red bg=gray
-startswith foo fg=cyan bg=blue
-startswith bar fg=blue effect=underscore
+"^[^|]+\|DEBUG\|.*$", "|", ['gray', 'darkgray', 'yellow', 'cyan', 'darkgray', 'darkgray']
+"^[^|]+\|INFO\|.*$", "|", ['gray', 'green', 'yellow', 'cyan', 'darkgray', 'green']
+"^[^|]+\|WARNING\|.*$", "|", ['gray', 'yellow', 'yellow', 'cyan', 'darkgray', 'yellow']
+"^[^|]+\|ERROR\|.*$", "|", ['gray', 'red', 'yellow', 'cyan', 'darkgray', 'red']
+"^[^|]+\|CRITICAL\|.*$", "|", ['gray', 'darkred', 'yellow', 'cyan', 'darkgray', 'darkred']
