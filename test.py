@@ -33,7 +33,7 @@ def test():
         wrapper.output('background %s test line' % color)
 
 def test_from_file():
-    config = Config('rc')
+    config = Config('test.rc')
     wrapper = Wrapper(config)
     wrapper.output('red on white changeset line')
     wrapper.output('foo cyan on blue test line')

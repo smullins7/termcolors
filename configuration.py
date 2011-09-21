@@ -1,4 +1,4 @@
-from color import BG, Color, EffectiveColor, FG
+from termcolors.color import BG, Color, EffectiveColor, FG
 from collections import defaultdict
 
 class Config(object):

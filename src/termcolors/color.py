@@ -69,7 +69,7 @@ class EffectiveColor(Color):
 
         @param effect: the int value of the effect to turn on
         """
-        self.color_str = ''.join([START, effect, DEL, self.color_id, M])
+        self.color_str = ''.join([START, str(effect), DEL, str(self.color_id), M])
         self.effect = effect
 
 class BG(object):
