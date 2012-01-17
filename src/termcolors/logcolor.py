@@ -7,6 +7,7 @@ import traceback
 from termcolors.color import foreground_colors
 
 regexes = {}
+last = None
 def read_config(filename=None):
     try:
         filename = filename or '/etc/termcolors.rc'
@@ -34,6 +35,7 @@ def handle_input(fp):
 
 def colorize(line):
     global regexes
+    global last
     for pattern in regexes:
         match = pattern.match(line)
         if not match:
@@ -45,7 +47,11 @@ def colorize(line):
         for text, color in zip(fields, colors):
             line_buffer.append(color.colorize(text))
 
+        last = color
         return sep.join(line_buffer)
+
+    if last:
+        return last.colorize(line)
 
     return line
 
