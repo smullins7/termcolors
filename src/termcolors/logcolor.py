@@ -28,7 +28,7 @@ def handle_input(fp):
             line = fp.readline()
             if not line:
                 break
-            line = line.strip()
+            line = line.rstrip()
             print colorize(line)
     except KeyboardInterrupt:
         pass
